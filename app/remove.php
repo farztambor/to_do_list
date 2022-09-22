@@ -1,23 +1,24 @@
 <?php
+
 if(isset($_POST['id'])){
-    require '../db_connect.php';
+    require '../db_conn.php';
 
     $id = $_POST['id'];
 
     if(empty($id)){
-        echo 0;
-    }else{
-        $stmt = $conn->prepare("DELETE FROM tods WHERE id=?");
+       echo 0;
+    }else {
+        $stmt = $conn->prepare("DELETE FROM todos WHERE id=?");
         $res = $stmt->execute([$id]);
 
-            if($res){
-               echo 1;
-            }else{
-               echo 0;
-            }
-            $conn == null;
-            exit();
+        if($res){
+            echo 1;
+        }else {
+            echo 0;
         }
-}else{
-    header("Location: ../index.php?message=error"); 
+        $conn = null;
+        exit();
+    }
+}else {
+    header("Location: ../index.php?mess=error");
 }
